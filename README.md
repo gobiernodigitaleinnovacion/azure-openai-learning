@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 3. Configurar credenciales:
 ```bash
-cp .env.example .env
+cp .env 
 # Editar .env con tus credenciales
 ```
 
@@ -82,9 +82,6 @@ pytest tests/
 4. Push a la rama
 5. Crear Pull Request
 
-# Proyecto de Aprendizaje Azure OpenAI
-
-[Contenido anterior...]
 
 ## Contacto y Soporte
 
