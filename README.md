@@ -77,20 +77,33 @@ blog = generador.crear_blog("IA en Medicina")
 ```
 
 ## Estructura del Proyecto
-```
 azure-openai-learning/
-├── src/
+├── src/                    # Código fuente
+│   ├── __init__.py
 │   ├── analizador_sentimientos.py
-│   ├── generador_resumenes.py
 │   ├── clasificador_documentos.py
+│   ├── generador_resumenes.py
 │   ├── procesador_documentos.py
 │   ├── generador_contenido.py
+│   ├── analizador_datos.py
+│   ├── config.py
 │   └── utils/
 │       └── cliente_azure.py
-├── tests/
-├── examples/
-└── .env
-```
+├── tests/                  # Pruebas unitarias
+│   └── test_analizadores.py
+├── examples/              # Ejemplos y demostraciones
+│   ├── notebooks/        # Jupyter notebooks
+│   │   ├── analisis_sentimientos.ipynb
+│   │   ├── clasificacion_avanzada.ipynb
+│   │   ├── procesamiento_documentos.ipynb
+│   │   └── resumenes_avanzados.ipynb
+│   ├── outputs/          # Archivos generados
+│   │   ├── blog_generado.txt
+│   │   ├── email_generado.txt
+│   │   └── informe_tecnico.txt
+│   └── scripts/          # Scripts de ejemplo
+│       └── generacion_contenido.py
+└── .env                   # Configuración local
 
 ## Pruebas
 ```bash
