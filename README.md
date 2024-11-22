@@ -1,6 +1,6 @@
 # Proyecto de Aprendizaje Azure OpenAI
 
-Implementaciones de ejemplo para Azure OpenAI con análisis de sentimientos, generación de resúmenes y clasificación de documentos.
+Implementaciones avanzadas de Azure OpenAI para procesamiento de lenguaje natural, análisis de sentimientos, generación de contenido y procesamiento de documentos.
 
 ## Requisitos
 
@@ -29,44 +29,67 @@ cp .env.example .env
 
 ## Funcionalidades
 
-### Análisis de Sentimientos
+### 1. Análisis de Sentimientos
 ```python
 from src.analizador_sentimientos import AnalizadorSentimientos
 
 analizador = AnalizadorSentimientos()
+# Análisis básico
 resultado = analizador.analizar("Me encanta este proyecto")
-print(resultado)  # POSITIVO
+# Análisis por aspectos
+aspectos = analizador.analizar_aspecto("El producto es bueno pero caro", "precio")
+# Análisis multilingüe
+sentimiento = analizador.analizar_multilingue("C'est excellent!", "fr")
 ```
 
-### Generación de Resúmenes
+### 2. Procesamiento de Documentos
 ```python
-from src.generador_resumenes import GeneradorResumenes
+from src.procesador_documentos import ProcesadorDocumentos
 
-generador = GeneradorResumenes()
-resumen = generador.resumir("texto largo...", max_palabras=100)
+procesador = ProcesadorDocumentos()
+# Procesar factura
+datos_factura = procesador.procesar_factura("texto_factura")
+# Analizar contrato
+analisis = procesador.analizar_contrato("texto_contrato")
 ```
 
-### Clasificación de Documentos
+### 3. Clasificación de Documentos
 ```python
 from src.clasificador_documentos import ClasificadorDocumentos
 
 categorias = ["Tecnología", "Negocios", "Salud"]
 clasificador = ClasificadorDocumentos(categorias)
+# Clasificación simple
 categoria = clasificador.clasificar("texto a clasificar")
+# Clasificación jerárquica
+resultado = clasificador.clasificar_jerarquico(texto, ["Software", "Hardware"])
+```
+
+### 4. Generador de Contenido
+```python
+from src.generador_contenido import GeneradorContenido
+
+generador = GeneradorContenido()
+# Generar email
+email = generador.generar_email("Reunión proyecto", tipo="formal")
+# Crear blog
+blog = generador.crear_blog("IA en Medicina")
 ```
 
 ## Estructura del Proyecto
 ```
 azure-openai-learning/
-├── src/                    # Código fuente
+├── src/
 │   ├── analizador_sentimientos.py
 │   ├── generador_resumenes.py
 │   ├── clasificador_documentos.py
+│   ├── procesador_documentos.py
+│   ├── generador_contenido.py
 │   └── utils/
 │       └── cliente_azure.py
-├── tests/                  # Pruebas unitarias
-├── examples/               # Notebooks de ejemplo
-└── .env                    # Configuración local
+├── tests/
+├── examples/
+└── .env
 ```
 
 ## Pruebas
@@ -81,10 +104,6 @@ pytest tests/
 3. Commit cambios
 4. Push a la rama
 5. Crear Pull Request
-
-# Proyecto de Aprendizaje Azure OpenAI
-
-[Contenido anterior...]
 
 ## Contacto y Soporte
 
