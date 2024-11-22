@@ -11,6 +11,7 @@ from src.analisis_predictivo import AnalizadorPredictivo
 from src.automatizador_workflows import AutomatizadorWorkflows
 from src.ocr_mejorado import OCRMejorado
 from src.recomendador import Recomendador
+from src.analizador_datos import AnalizadorDatos
 
 
 
@@ -456,3 +457,49 @@ def test_ajustar_recomendaciones():
    ajustes = recomendador.ajustar_recomendaciones(feedback, recomendaciones_previas)
    assert isinstance(ajustes, str)
    assert len(ajustes) > 0
+
+class TestAnalizadorDatos:
+    def test_interpretar_metricas(self):
+        analizador = AnalizadorDatos()
+        datos_ejemplo = """
+        Ventas Q4 2023:
+        Octubre: $150,000
+        Noviembre: $180,000
+        Diciembre: $220,000
+        
+        Métricas:
+        - Crecimiento: 20%
+        - Margen: 35%
+        - Clientes nuevos: 45
+        """
+        resultado = analizador.interpretar_metricas(datos_ejemplo)
+        print(f"Interpretación de métricas: {resultado}")
+        assert isinstance(resultado, str)
+        assert len(resultado) > 0
+
+    def test_analizar_tendencias(self):
+        analizador = AnalizadorDatos()
+        datos_metricas = """
+        Métricas clave:
+        1. Ventas: $550,000
+        2. Clientes: 150
+        3. Satisfacción: 4.5/5
+        4. Retención: 85%
+        """
+        tendencias = analizador.analizar_tendencias(datos_metricas)
+        print(f"Análisis de tendencias: {tendencias}")
+        assert isinstance(tendencias, str)
+        assert len(tendencias) > 0
+
+    def test_generar_recomendaciones(self):
+        analizador = AnalizadorDatos()
+        datos = {
+            "ventas": 550000,
+            "clientes": 150,
+            "satisfaccion": 4.5,
+            "retencion": 0.85
+        }
+        recomendaciones = analizador.generar_recomendaciones(str(datos))
+        print(f"Recomendaciones: {recomendaciones}")
+        assert isinstance(recomendaciones, str)
+        assert len(recomendaciones) > 0

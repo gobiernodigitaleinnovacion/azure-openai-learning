@@ -191,12 +191,23 @@ explicacion = recomendador.explicar_recomendacion(recomendacion, perfil)
 # Ajustes
 ajustes = recomendador.ajustar_recomendaciones(feedback, previas)
 ```
+### 13. Analizador de Datos
+```python
+from src.analizador_datos import AnalizadorDatos
 
+analizador = AnalizadorDatos()
+# Interpretación de métricas
+interpretacion = analizador.interpretar_metricas(datos_metricas)
+# Análisis de tendencias
+tendencias = analizador.analizar_tendencias(datos)
+# Recomendaciones
+recomendaciones = analizador.generar_recomendaciones(datos)
 ## Estructura del Proyecto
 ```
 azure-openai-learning/
 ├── src/
 │   ├── analizador_sentimientos.py
+    ├── analizador_datos.py  
 │   ├── generador_resumenes.py
 │   ├── clasificador_documentos.py
 │   ├── procesador_documentos.py
