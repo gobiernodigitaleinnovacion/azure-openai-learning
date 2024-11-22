@@ -4,6 +4,16 @@ from src.analizador_sentimientos import AnalizadorSentimientos
 from src.generador_resumenes import GeneradorResumenes
 from src.clasificador_documentos import ClasificadorDocumentos
 from src.generador_contenido import GeneradorContenido
+from src.traductor_ia import TraductorIA
+from src.chatbot_ia import ChatbotIA
+from src.asistente_codigo import AsistenteCodigo
+from src.analisis_predictivo import AnalizadorPredictivo
+from src.automatizador_workflows import AutomatizadorWorkflows
+from src.ocr_mejorado import OCRMejorado
+from src.recomendador import Recomendador
+
+
+
 
 # Datos de ejemplo para tests
 texto_documento = """
@@ -236,3 +246,213 @@ class TestGeneradorContenido:
        datos = "Tiempo: 3 meses, Presupuesto: 80%"
        resultado = generador.generar_informe(datos, tipo_informe="ejecutivo")
        assert isinstance(resultado, str)
+
+def test_traduccion():
+    traductor = TraductorIA()
+    texto = "Hello world, how are you?"
+    resultado = traductor.traducir(texto, "inglés", "español")
+    assert isinstance(resultado, str)
+    assert len(resultado) > 0
+
+def test_localizacion():
+    traductor = TraductorIA()
+    texto = "Our product is the best in the market"
+    resultado = traductor.localizar(texto, "México")
+    assert isinstance(resultado, str)
+    assert len(resultado) > 0
+
+def test_respuesta_basica():
+   chatbot = ChatbotIA()
+   pregunta = "¿Cómo puedo restablecer mi contraseña?"
+   respuesta = chatbot.responder(pregunta, "soporte técnico")
+   assert isinstance(respuesta, str)
+   assert len(respuesta) > 0
+
+def test_conversacion_contexto():
+   chatbot = ChatbotIA()
+   preguntas = [
+       "¿Qué servicios ofrecen?",
+       "¿Cuánto cuesta el plan básico?",
+       "¿Incluye soporte 24/7?"
+   ]
+   for pregunta in preguntas:
+       respuesta = chatbot.responder(pregunta, "ventas")
+       assert isinstance(respuesta, str)
+       assert len(chatbot.historial) > 0
+
+def test_limpiar_historial():
+   chatbot = ChatbotIA()
+   chatbot.responder("Hola")
+   chatbot.limpiar_historial()
+   assert len(chatbot.historial) == 0
+
+def test_generar_codigo():
+   asistente = AsistenteCodigo()
+   descripcion = "Crear una función que calcule el factorial de un número"
+   codigo = asistente.generar_codigo(descripcion, "python")
+   assert isinstance(codigo, str)
+   assert "def" in codigo
+   assert "factorial" in codigo.lower()
+
+def test_explicar_codigo():
+   asistente = AsistenteCodigo()
+   codigo = """
+   def factorial(n):
+       if n == 0:
+           return 1
+       return n * factorial(n-1)
+   """
+   explicacion = asistente.explicar_codigo(codigo)
+   assert isinstance(explicacion, str)
+   assert len(explicacion) > 0
+
+def test_sugerir_mejoras():
+   asistente = AsistenteCodigo()
+   codigo = """
+   def suma(a,b):
+       x = a+b
+       return x
+   """
+   sugerencias = asistente.sugerir_mejoras(codigo)
+   assert isinstance(sugerencias, str)
+   assert len(sugerencias) > 0
+
+# Datos de ejemplo para tests
+datos_ventas = """
+2023-01: 100000
+2023-02: 120000
+2023-03: 150000
+2023-04: 140000
+2023-05: 180000
+2023-06: 200000
+"""
+
+def test_predecir_tendencia():
+   analizador = AnalizadorPredictivo()
+   prediccion = analizador.predecir_tendencia(
+       datos_ventas,
+       "Ventas mensuales de software"
+   )
+   assert isinstance(prediccion, str)
+   assert len(prediccion) > 0
+
+def test_analizar_patrones():
+   analizador = AnalizadorPredictivo()
+   patrones = analizador.analizar_patrones(datos_ventas)
+   assert isinstance(patrones, str)
+   assert len(patrones) > 0
+
+def test_generar_recomendaciones():
+   analizador = AnalizadorPredictivo()
+   analisis = "Las ventas muestran un crecimiento constante con picos estacionales"
+   recomendaciones = analizador.generar_recomendaciones(analisis)
+   assert isinstance(recomendaciones, str)
+   assert len(recomendaciones) > 0
+
+
+proceso_onboarding = """
+1. Recepción de documentos del empleado
+2. Verificación de antecedentes
+3. Alta en sistemas
+4. Asignación de equipo
+5. Capacitación inicial
+"""
+
+metricas = """
+Paso 1: 2 días promedio
+Paso 2: 5 días promedio
+Paso 3: 1 día promedio
+Paso 4: 3 días promedio
+Paso 5: 5 días promedio
+"""
+
+def test_disenar_workflow():
+    automatizador = AutomatizadorWorkflows()
+    workflow = automatizador.disenar_workflow("Proceso de onboarding de nuevos empleados")
+    assert isinstance(workflow, str)
+    assert len(workflow) > 0
+
+def test_optimizar_proceso():
+    automatizador = AutomatizadorWorkflows()
+    optimizacion = automatizador.optimizar_proceso(proceso_onboarding)
+    assert isinstance(optimizacion, str)
+    assert len(optimizacion) > 0
+
+def test_identificar_cuellos_botella():
+    automatizador = AutomatizadorWorkflows()
+    analisis = automatizador.identificar_cuellos_botella(metricas)
+    assert isinstance(analisis, str)
+    assert len(analisis) > 0
+# Datos de ejemplo
+texto_con_errores = """
+F A C T U R A
+No, 1234
+Feeha: 15/11/2O23
+Cllente: Empr3sa ABC
+Total: $ l,234.5O
+"""
+
+texto_estructurado = """
+CONTRATO DE SERVICIOS
+CLÁUSULA PRIMERA: PARTES
+1.1 EL PROVEEDOR: Servicios Tech SA
+1.2 EL CLIENTE: Empresa ABC
+
+CLÁUSULA SEGUNDA: OBJETO
+2.1 Prestación de servicios...
+"""
+
+def test_extraer_texto():
+   ocr = OCRMejorado()
+   resultado = ocr.extraer_texto(texto_con_errores)
+   assert isinstance(resultado, str)
+   assert len(resultado) > 0
+
+def test_analizar_estructura():
+   ocr = OCRMejorado()
+   resultado = ocr.analizar_estructura(texto_estructurado)
+   assert isinstance(resultado, str)
+   assert len(resultado) > 0
+
+def test_corregir_errores():
+   ocr = OCRMejorado()
+   resultado = ocr.corregir_errores(texto_con_errores)
+   assert isinstance(resultado, str)
+   assert "FACTURA" in resultado
+   assert "2023" in resultado
+# Datos de ejemplo
+perfil_usuario = """
+Nombre: Ana García
+Edad: 28
+Intereses: tecnología, viajes, fotografía
+Ubicación: Madrid
+Presupuesto: Medio
+"""
+
+historial = """
+Últimas compras:
+- Cámara mirrorless entry-level
+- Trípode básico
+- Curso básico de fotografía online
+"""
+
+def test_generar_recomendaciones():
+   recomendador = Recomendador()
+   recomendaciones = recomendador.generar_recomendaciones(perfil_usuario, historial)
+   assert isinstance(recomendaciones, str)
+   assert len(recomendaciones) > 0
+
+def test_explicar_recomendacion():
+   recomendador = Recomendador()
+   recomendacion = "Curso avanzado de fotografía digital"
+   explicacion = recomendador.explicar_recomendacion(recomendacion, perfil_usuario)
+   assert isinstance(explicacion, str)
+   assert len(explicacion) > 0
+
+def test_ajustar_recomendaciones():
+   recomendador = Recomendador()
+   feedback = "Prefiero contenido más avanzado y menos productos básicos"
+   recomendaciones_previas = "Curso básico de edición, filtros para lentes"
+   ajustes = recomendador.ajustar_recomendaciones(feedback, recomendaciones_previas)
+   assert isinstance(ajustes, str)
+   assert len(ajustes) > 0
